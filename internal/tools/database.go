@@ -8,14 +8,14 @@ type LoginDetails struct {
 	AuthToken string
 	Username  string
 }
-type ShawtiesDetails struct {
+type AmountDetails struct {
 	Amount   int64
 	Username string
 }
 
 type DatabaseInterface interface {
 	GetUserLoginDetails(username string) *LoginDetails
-	GetUserAmount(username string) *ShawtiesDetails
+	GetUserAmount(username string) *AmountDetails
 	SetupDatabase() error
 }
 

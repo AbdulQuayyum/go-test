@@ -21,20 +21,17 @@ var mockLoginDetails = map[string]LoginDetails{
 	},
 }
 
-var mockShawtiesDetails = map[string]CoinDetails{
+var mockAmountDetails = map[string]AmountDetails{
 	"AbdulQuayyum": {
 		Amount:   1,
-		Success:  true,
 		Username: "AbdulQuayyum",
 	},
 	"Emmanuel": {
 		Amount:   10,
-		Success:  true,
 		Username: "Emmanuel",
 	},
 	"Sulaiman": {
 		Amount:   0,
-		Success:  true,
 		Username: "Sulaiman",
 	},
 }
@@ -51,11 +48,11 @@ func (d *mockDB) GetUserLoginDetails(username string) *LoginDetails {
 	return &clientData
 }
 
-func (d *mockDB) GetUserAmount(username string) *CoinDetails {
+func (d *mockDB) GetUserAmount(username string) *AmountDetails {
 	time.Sleep(time.Second * 1)
 
-	var clientData = CoinDetails{}
-	clientData, ok := mockShawtiesDetails[username]
+	var clientData = AmountDetails{}
+	clientData, ok := mockAmountDetails[username]
 	if !ok {
 		return nil
 	}

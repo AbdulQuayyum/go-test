@@ -10,10 +10,10 @@ import (
 func Handler(r *chi.Mux) {
 	r.Use(chimiddle.StripSlashes)
 
-	r.Route("/user", func(router chi.Router) {
+	r.Route("/v1/user", func(router chi.Router) {
 
 		router.Use(middleware.Authorization)
 
-		router.Get("/shawties", GetShawtiesAmount)
+		router.Get("/amount", GetAmountBalance)
 	})
 }

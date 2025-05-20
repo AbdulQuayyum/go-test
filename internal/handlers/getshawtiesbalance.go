@@ -10,7 +10,7 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-func GetCoinBalance(w http.ResponseWriter, r *http.Request) {
+func GetAmountBalance(w http.ResponseWriter, r *http.Request) {
 	var params = api.UserShawtiesAmountParams{}
 	var decoder *schema.Decoder = schema.NewDecoder()
 	var err error
@@ -30,7 +30,7 @@ func GetCoinBalance(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var tokenDetails *tools.CoinDetails
+	var tokenDetails *tools.AmountDetails
 	tokenDetails = (*database).GetUserAmount(params.Username)
 	if tokenDetails == nil {
 		log.Error(err)
@@ -39,9 +39,8 @@ func GetCoinBalance(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var response = api.UserShawtiesAmountResponse{
-		Amoount: (*tokenDetails).Coins,
-		Code:    http.StatusOK,
-		Success: true,
+		Amount: (*tokenDetails).Amount,
+		Code:   http.StatusOK,
 	}
 
 	w.Header().Set("Content-Type", "application/json")

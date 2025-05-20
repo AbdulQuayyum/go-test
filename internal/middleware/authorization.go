@@ -21,7 +21,7 @@ func Authorization(next http.Handler) http.Handler {
 		var err error
 
 		if username == "" {
-			api.RequestErrorHandler(w, false, UnAuthorizedError)
+			api.RequestErrorHandler(w, UnAuthorizedError)
 			return
 		}
 
@@ -37,7 +37,7 @@ func Authorization(next http.Handler) http.Handler {
 
 		if loginDetails == nil || (token != (*loginDetails).AuthToken) {
 			log.Error(UnAuthorizedError)
-			api.RequestErrorHandler(w, false, UnAuthorizedError)
+			api.RequestErrorHandler(w, UnAuthorizedError)
 			return
 		}
 
