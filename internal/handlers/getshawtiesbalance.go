@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/AbdulQuayyum/go-test/api"
@@ -16,7 +17,6 @@ func GetAmountBalance(w http.ResponseWriter, r *http.Request) {
 	var err error
 
 	err = decoder.Decode(&params, r.URL.Query())
-
 	if err != nil {
 		log.Error(err)
 		api.InternalErrorHandler(w)
@@ -33,14 +33,23 @@ func GetAmountBalance(w http.ResponseWriter, r *http.Request) {
 	var tokenDetails *tools.AmountDetails
 	tokenDetails = (*database).GetUserAmount(params.Username)
 	if tokenDetails == nil {
-		log.Error(err)
+		log.Error("User not found or no amount data")
 		api.InternalErrorHandler(w)
 		return
 	}
 
+	amount := tokenDetails.Amount
+	message := ""
+	if amount == 1 {
+		message = fmt.Sprintf("%s has 1 shawtie", params.Username)
+	} else {
+		message = fmt.Sprintf("%s has %d shawties", params.Username, amount)
+	}
+
 	var response = api.UserShawtiesAmountResponse{
-		Amount: (*tokenDetails).Amount,
-		Code:   http.StatusOK,
+		Amount:  amount,
+		Code:    http.StatusOK,
+		Message: message,
 	}
 
 	w.Header().Set("Content-Type", "application/json")

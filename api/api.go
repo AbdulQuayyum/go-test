@@ -10,8 +10,9 @@ type UserShawtiesAmountParams struct {
 }
 
 type UserShawtiesAmountResponse struct {
-	Code   int
-	Amount int64
+	Code    int    `json:"code"`
+	Amount  int64  `json:"amount"`
+	Message string `json:"message"`
 }
 
 type Error struct {

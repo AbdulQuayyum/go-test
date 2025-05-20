@@ -1,0 +1,47 @@
+{
+	"info": {
+		"_postman_id": "a6dc4229-4d46-42da-b407-f747218f72a3",
+		"name": "testing go",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19586111"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8000/v1/user/amount/?username=Sulaiman",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "789GHI",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/v1/user/amount/?username=Sulaiman",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"user",
+						"amount",
+						""
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "Sulaiman"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
